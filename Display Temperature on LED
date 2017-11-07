@@ -4,16 +4,14 @@ sense = SenseHat();
 sense.clear();
 
 temp = sense.get_temperature();
-sense.show_message(temp);
+s = str(temp)
+sense.show_message(s);
 
 color = (252, 0, 252);
-if temp<32.0
+if temp<32.0:
   color = (0, 0, 252);
-elif temp>70.0;
+elif temp>70.0:
   color = (252, 0, 0);
-else 
+else :
   color = (252, 0, 252);
-sense.back_color(color);
-
-
-  
+back_color(color);
