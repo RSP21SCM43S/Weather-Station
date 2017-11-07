@@ -1,7 +1,19 @@
 from sense_hat import SenseHat
 
-sense = SenseHat()
-sense.clear()
+sense = SenseHat();
+sense.clear();
 
-temp = sense.get_temperature()
+temp = sense.get_temperature();
 sense.show_message(temp);
+
+color = (252, 0, 252);
+if temp<32.0
+  color = (0, 0, 252);
+elif temp>70.0;
+  color = (252, 0, 0);
+else 
+  color = (252, 0, 252);
+sense.back_color(color);
+
+
+  
