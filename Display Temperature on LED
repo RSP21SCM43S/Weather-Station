@@ -5,13 +5,11 @@ sense.clear();
 
 temp = sense.get_temperature();
 s = str(temp)
-sense.show_message(s);
+
+r=0;
+g=0;
+b=252;
 
 color = (252, 0, 252);
-if temp<32.0:
-  color = (0, 0, 252);
-elif temp>70.0:
-  color = (252, 0, 0);
-else :
-  color = (252, 0, 252);
-back_color(color);
+
+sense.show_message(s[:4],back_colour=[r,g,b]);
