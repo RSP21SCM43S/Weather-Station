@@ -33,6 +33,7 @@ else:
   b = 252
 
 sense.show_message(t[:4] + "C",back_colour=[r,g,b]); 
+sense.clear();
 time.sleep(3)
 
 if pres >= 1100:
@@ -51,6 +52,7 @@ else:
   b = 252
   
 sense.show_message(p[:5] + "hPa",back_colour=[r,g,b]);
+sense.clear();
 time.sleep(3)
 
 if hum >= 70:
@@ -69,3 +71,4 @@ else:
   b = 252
 
 sense.show_message(h[:4] + "%",back_colour=[r,g,b]);
+sense.clear();
