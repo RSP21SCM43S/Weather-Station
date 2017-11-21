@@ -17,5 +17,5 @@ msg['Subject'] = "weather"
 msg.attach(MIMEText(message, 'plain'))
 
 s.send_message(msg)
-
+Print("Done");
 s.quit()
