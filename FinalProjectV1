@@ -94,7 +94,7 @@ while intervals > counter:
   msg['To'] = toaddr
   msg['Subject'] = 'Sense Hat Weather Station'
 
-  body = "Python Test Email"
+  body = ("The Temperature Outside is " + t[:4] + "C" + "\n The Pressure is " + p[:5] + "\n The Humidity is " + h[:4]) 
   msg.attach(MIMEText(body,'plain'))
 
 
