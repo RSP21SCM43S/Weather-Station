@@ -7,6 +7,10 @@ sense.clear();
 minutes = 1;
 counter = 0;
 
+r=0;
+g=0;
+b=252;
+
 temp = sense.get_temperature();
 t = str(temp)
 
