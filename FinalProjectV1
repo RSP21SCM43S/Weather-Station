@@ -88,7 +88,7 @@ while intervals > counter:
   gmail_password = 'weatherstation'
 
   fromaddr = gmail_user  
-  toaddr = ('sydorchukromchyk@gmail.com')
+  toaddr = eMailAddress
   msg = MIMEMultipart()
   msg['From'] = fromaddr
   msg['To'] = toaddr
