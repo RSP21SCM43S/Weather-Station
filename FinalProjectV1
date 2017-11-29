@@ -6,95 +6,108 @@ from sense_hat import SenseHat
 sense = SenseHat();
 sense.clear();
 
-temp = sense.get_temperature();
-t = str(temp)
-
-pres = sense.get_pressure();
-p = str(pres)
-
-hum = sense.get_humidity();
-h = str(hum)
-
-r=0;
-g=0;
-b=252;
-
-if temp >= 30:
-  r = 252
-  g = 0 
-  b = 0 
-  
-elif temp <= 0:
-  r = 0 
-  g = 0 
-  b = 252
-  
-else:
-  r = 252
-  g = 0 
-  b = 252
-
-sense.show_message(t[:4] + "C",back_colour=[r,g,b]); 
-sense.clear();
-time.sleep(3)
-
-if pres >= 1100:
-  r = 252
-  g = 0 
-  b = 0 
-  
-elif pres <= 900:
-  r = 0 
-  g = 0 
-  b = 252
-  
-else:
-  r = 252
-  g = 0 
-  b = 252
-  
-sense.show_message(p[:5] + "hPa",back_colour=[r,g,b]);
-sense.clear();
-time.sleep(3)
-
-if hum >= 70:
-  r = 252
-  g = 0 
-  b = 0 
-  
-elif hum <= 30:
-  r = 0 
-  g = 0 
-  b = 252
-  
-else:
-  r = 252
-  g = 0 
-  b = 252
-
-sense.show_message(h[:4] + "%",back_colour=[r,g,b]);
-sense.clear();
-
-gmail_user = 'WeatherStationDoNotReply@gmail.com'  
-gmail_password = 'weatherstation'
-
-sent_from = gmail_user  
-to = ('sydorchukromchyk@gmail.com')  
-subject = ('OMG Super Important Message')  
-body = ('The weather outside is: ', temp, pres, hum)
-
-email_text = (body)
+hours = int(input("Enter how many intervals do you want the program to run for."));
+eMailAddress = input("Enter your email address.");
+counter = 0;
+while hours > counter:
 
 
-try:  
-    server = smtplib.SMTP('smtp.gmail.com', 587)
-    server.starttls()
-    server.ehlo()
-    server.login(gmail_user, gmail_password)
-    server.sendmail(sent_from, to, email_text)
-    server.close()
+  temp = sense.get_temperature();
+  t = str(temp)
 
-    print ('Email sent!')
-except Exception as err:  
-    print (err)
-    traceback.print_exc()
+  pres = sense.get_pressure();
+  p = str(pres)
+
+  hum = sense.get_humidity();
+  h = str(hum)
+
+  r=0;
+  g=0;
+  b=252;
+
+  if temp >= 30:
+    r = 252
+    g = 0 
+    b = 0 
+
+  elif temp <= 0:
+    r = 0 
+    g = 0 
+    b = 252
+
+  else:
+    r = 252
+    g = 0 
+    b = 252
+
+  sense.show_message(t[:4] + "C",back_colour=[r,g,b]); 
+  sense.clear();
+  time.sleep(3)
+
+  if pres >= 1100:
+    r = 252
+    g = 0 
+    b = 0 
+
+  elif pres <= 900:
+    r = 0 
+    g = 0 
+    b = 252
+
+  else:
+    r = 252
+    g = 0 
+    b = 252
+
+  sense.show_message(p[:5] + "hPa",back_colour=[r,g,b]);
+  sense.clear();
+  time.sleep(3)
+
+  if hum >= 70:
+    r = 252
+    g = 0 
+    b = 0 
+
+  elif hum <= 30:
+    r = 0 
+    g = 0 
+    b = 252
+
+  else:
+    r = 252
+    g = 0 
+    b = 252
+
+  sense.show_message(h[:4] + "%",back_colour=[r,g,b]);
+  sense.clear();
+
+  gmail_user = 'WeatherStationDoNotReply@gmail.com'  
+  gmail_password = 'weatherstation'
+
+  sent_from = gmail_user  
+  to = (eMailAddress)  
+  subject = ('Today\'s Weather')  
+  body = ('The Temperature Outside is '+ t[:4] + 'C' + '\n The Pressure is ' + p[:5] + '\n The Humidity is ' + h[:4])
+
+  email_text = (body)
+
+
+  try:  
+      server = smtplib.SMTP('smtp.gmail.com', 587)
+      server.starttls()
+      server.ehlo()
+      server.login(gmail_user, gmail_password)
+      server.sendmail(sent_from, to, email_text)
+      server.close()
+
+      print ('Email sent!')
+  except Exception as err:  
+      print (err)
+      traceback.print_exc()
+  time.sleep(60)
+  counter = counter + 1
+while True:
+    for event in sense.stick.get_events():
+        if event.action == 'pressed' and event.direction == 'up':
+            sense.show_message(t[:4] + "C",back_colour=[r,g,b]); 
+            sense.clear();
