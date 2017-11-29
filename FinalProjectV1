@@ -95,17 +95,15 @@ while minutes > counter:
       print (err)
       traceback.print_exc()
   
-  while True: 
-    for event in sense.stick.get_events():
-      if event.action == 'pressed' and event.direction == 'down':
-        sense.show_message(t[:4] + "C",back_colour=[r,g,b]); 
-        sense.clear();
-      if event.action == 'pressed' and event.direction == 'left':
-        sense.show_message(p[:5] + "hPa",back_colour=[r,g,b]); 
-        sense.clear();
-      if event.action == 'pressed' and event.direction == 'right':
-        sense.show_message(h[:4] + "%",back_colour=[r,g,b]); 
-        sense.clear();
-
+  for event in sense.stick.get_events():
+    if event.action == 'pressed' and event.direction == 'down':
+      sense.show_message(t[:4] + "C",back_colour=[r,g,b]); 
+      sense.clear();
+    if event.action == 'pressed' and event.direction == 'left':
+      sense.show_message(p[:5] + "hPa",back_colour=[r,g,b]); 
+      sense.clear();
+    if event.action == 'pressed' and event.direction == 'right':
+      sense.show_message(h[:4] + "%",back_colour=[r,g,b]); 
+      sense.clear();
 
   time.sleep(60)
