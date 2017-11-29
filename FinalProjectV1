@@ -67,6 +67,9 @@ while minutes > counter:
     g = 0 
     b = 252
   
+  gmail_user = 'WeatherStationDoNotReply@gmail.com'  
+  gmail_password = 'weatherstation'
+  
   fromaddr = gmail_user  
   toaddr = eMailAddress
   msg = MIMEMultipart()
@@ -104,8 +107,5 @@ while minutes > counter:
         sense.show_message(h[:4] + "%",back_colour=[r,g,b]); 
         sense.clear();
 
-
-  gmail_user = 'WeatherStationDoNotReply@gmail.com'  
-  gmail_password = 'weatherstation'
 
   time.sleep(60)
