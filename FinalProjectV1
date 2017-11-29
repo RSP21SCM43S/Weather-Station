@@ -91,17 +91,18 @@ while minutes > counter:
   except Exception as err:  
       print (err)
       traceback.print_exc()
-      
-  for event in sense.stick.get_events():
-    if event.action == 'pressed' and event.direction == 'down':
-      sense.show_message(t[:4] + "C",back_colour=[r,g,b]); 
-      sense.clear();
-    if event.action == 'pressed' and event.direction == 'left':
-      sense.show_message(p[:5] + "hPa",back_colour=[r,g,b]); 
-      sense.clear();
-    if event.action == 'pressed' and event.direction == 'right':
-      sense.show_message(h[:4] + "%",back_colour=[r,g,b]); 
-      sense.clear();
+  
+  while True: 
+    for event in sense.stick.get_events():
+      if event.action == 'pressed' and event.direction == 'down':
+        sense.show_message(t[:4] + "C",back_colour=[r,g,b]); 
+        sense.clear();
+      if event.action == 'pressed' and event.direction == 'left':
+        sense.show_message(p[:5] + "hPa",back_colour=[r,g,b]); 
+        sense.clear();
+      if event.action == 'pressed' and event.direction == 'right':
+        sense.show_message(h[:4] + "%",back_colour=[r,g,b]); 
+        sense.clear();
 
 
   gmail_user = 'WeatherStationDoNotReply@gmail.com'  
