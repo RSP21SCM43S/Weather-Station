@@ -1,15 +1,18 @@
 import time
 import smtplib
 import traceback
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+
 from sense_hat import SenseHat
 
 sense = SenseHat();
 sense.clear();
 
-hours = int(input("Enter how many hours the program will run for."));
+intervals = int(input("Enter how many intervals do you want the program to run for."));
 eMailAddress = input("Enter your email address.");
 counter = 0;
-while hours > counter:
+while intervals > counter:
 
 
   temp = sense.get_temperature();
@@ -84,12 +87,15 @@ while hours > counter:
   gmail_user = 'WeatherStationDoNotReply@gmail.com'  
   gmail_password = 'weatherstation'
 
-  sent_from = gmail_user  
-  to = (eMailAddress)  
-  subject = ('OMG Super Important Message')  
-  body = ('The weather outside is: ', temp, pres, hum)
+  fromaddr = gmail_user  
+  toaddr = ('sydorchukromchyk@gmail.com')
+  msg = MIMEMultipart()
+  msg['From'] = fromaddr
+  msg['To'] = toaddr
+  msg['Subject'] = 'Sense Hat Weather Station'
 
-  email_text = (body)
+  body = "Python Test Email"
+  msg.attach(MIMEText(body,'plain'))
 
 
   try:  
@@ -97,12 +103,19 @@ while hours > counter:
       server.starttls()
       server.ehlo()
       server.login(gmail_user, gmail_password)
-      server.sendmail(sent_from, to, email_text)
+      text = msg.as_string()
+      server.sendmail(fromaddr, toaddr, text)
       server.close()
 
       print ('Email sent!')
   except Exception as err:  
       print (err)
       traceback.print_exc()
-  time.sleep(3600)
+    
+  time.sleep(60)
   counter = counter + 1
+while True:
+    for event in sense.stick.get_events():
+        if event.action == 'pressed' and event.direction == 'up':
+            sense.show_message(t[:4] + "C",back_colour=[r,g,b]); 
+            sense.clear();
