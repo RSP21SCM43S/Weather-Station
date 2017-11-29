@@ -7,6 +7,7 @@ sense = SenseHat();
 sense.clear();
 
 hours = int(input("Enter how many hours the program will run for."));
+eMailAddress = input("Enter your email address.");
 counter = 0;
 while hours > counter:
 
@@ -84,7 +85,7 @@ while hours > counter:
   gmail_password = 'weatherstation'
 
   sent_from = gmail_user  
-  to = ('sydorchukromchyk@gmail.com')  
+  to = (eMailAddress)  
   subject = ('OMG Super Important Message')  
   body = ('The weather outside is: ', temp, pres, hum)
 
